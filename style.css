@@ -1,8 +1,10 @@
 :root {
-  --bg: #000;
-  --fg: #d8d8d8;
-  --dim: #666;
+  --bg: #fff;
+  --fg: #2a2a2e;
+  --dim: #9a9aa0;
   --rec: #c0392b;
+  --panel: #f2f2f4;
+  --line: #dcdce0;
 }
 
 * { box-sizing: border-box; }
@@ -39,17 +41,34 @@ html, body {
   height: 100%;
 }
 
+/* The frosted glass over the waveform (its blur and opacity are set by visuals.js). */
+#frost {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.35);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The text sits low on the screen, so the waveform has the middle. */
 #label {
-  position: relative;
-  font-size: 28px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom) + 64px);
+  text-align: center;
+  font-size: 20px;
   letter-spacing: 0.08em;
   text-transform: lowercase;
 }
 
 #sublabel {
-  position: relative;
-  margin-top: 8px;
-  font-size: 15px;
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: calc(env(safe-area-inset-bottom) + 36px);
+  text-align: center;
+  font-size: 13px;
   color: var(--dim);
   min-height: 1.2em;
 }
@@ -87,7 +106,7 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
 #settings {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.94);
+  background: rgba(255, 255, 255, 0.97);
   padding: calc(env(safe-area-inset-top) + 24px) 20px 24px;
   display: flex;
   flex-direction: column;
@@ -105,9 +124,9 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
 #settings-close {
   font-size: 16px;
   padding: 10px;
-  background: #222;
+  background: var(--panel);
   color: var(--fg);
-  border: 1px solid #333;
+  border: 1px solid var(--line);
   border-radius: 8px;
 }
 #settings-close { margin-top: auto; }
