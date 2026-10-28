@@ -3,8 +3,6 @@
   --fg: #2a2a2e;
   --dim: #9a9aa0;
   --rec: #c0392b;
-  --panel: #f2f2f4;
-  --line: #dcdce0;
 }
 
 * { box-sizing: border-box; }
@@ -90,7 +88,9 @@ body.recording #label { color: var(--rec); }
 }
 body.recording #progress-fill { background: var(--rec); opacity: 1; }
 
-/* Settings */
+/* ── Settings: pixel style ──────────────────────────────────────────────── */
+
+/* The settings button: a small hollow square made of 8 pixels. */
 #settings-button {
   position: fixed;
   top: calc(env(safe-area-inset-top) + 8px);
@@ -99,34 +99,119 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
   height: 44px;
   border: none;
   background: transparent;
-  color: var(--dim);
-  font-size: 22px;
+}
+#settings-button::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  width: 4px;
+  height: 4px;
+  background: var(--dim);
+  box-shadow:
+    5px 0 var(--dim), 10px 0 var(--dim),
+    0 5px var(--dim), 10px 5px var(--dim),
+    0 10px var(--dim), 5px 10px var(--dim), 10px 10px var(--dim);
 }
 
 #settings {
+  --block: #2a2a2e;   /* the dark pixel color */
+  --pale: #dcdce2;    /* the light pixel color (empty, shadows) */
   position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.97);
-  padding: calc(env(safe-area-inset-top) + 24px) 20px 24px;
+  background: #fff;
+  padding: calc(env(safe-area-inset-top) + 28px) 22px calc(env(safe-area-inset-bottom) + 24px);
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  font-size: 16px;
+  gap: 28px;
   overflow-y: auto;
+  font-family: 'Silkscreen', ui-monospace, Menlo, monospace;
+  color: var(--block);
 }
 #settings[hidden] { display: none; }
-#settings h2 { margin: 0; font-weight: 400; }
-#settings label { display: flex; flex-direction: column; gap: 8px; }
-#settings label span { display: flex; align-items: center; gap: 12px; }
-#settings input[type="range"] { flex: 1; }
-#settings output { min-width: 4em; text-align: right; color: var(--dim); }
-#settings select,
-#settings-close {
-  font-size: 16px;
-  padding: 10px;
-  background: var(--panel);
-  color: var(--fg);
-  border: 1px solid var(--line);
-  border-radius: 8px;
+
+#settings h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
 }
-#settings-close { margin-top: auto; }
+/* A dotted pixel line under the title. */
+#settings h2::after {
+  content: '';
+  display: block;
+  height: 4px;
+  margin-top: 12px;
+  background: repeating-linear-gradient(90deg, var(--block) 0 4px, transparent 4px 10px);
+  opacity: 0.35;
+}
+
+#settings .field { display: flex; flex-direction: column; gap: 10px; }
+#settings .name { font-size: 11px; letter-spacing: 0.08em; color: var(--dim); }
+#settings .row { display: flex; align-items: center; gap: 14px; }
+#settings output { min-width: 5.5em; text-align: right; font-size: 12px; }
+
+/* Dropdowns are hidden; settings.js shows their options as blocks instead. */
+#settings select { display: none; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choices button,
+#settings-close {
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 11px 12px;
+  border: 2px solid var(--block);
+  border-radius: 0;
+  background: #fff;
+  color: var(--block);
+  cursor: pointer;
+}
+.choices button.on,
+#settings-close {
+  background: var(--block);
+  color: #fff;
+  box-shadow: 4px 4px 0 var(--pale); /* a hard pixel shadow */
+}
+#settings-close { margin-top: auto; font-size: 13px; padding: 14px; }
+
+/* Sliders: a row of small squares that fills in dark up to the value
+   (settings.js sets --fill), with a square handle. */
+#settings input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 22px;
+  margin: 0;
+  background: transparent;
+  --fill: 50%;
+}
+#settings input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 6px, #fff 6px 9px),
+    linear-gradient(90deg, var(--block) var(--fill), var(--pale) var(--fill));
+}
+#settings input[type="range"]::-moz-range-track {
+  height: 8px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 6px, #fff 6px 9px),
+    linear-gradient(90deg, var(--block) var(--fill), var(--pale) var(--fill));
+}
+#settings input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -5px;
+  border: none;
+  border-radius: 0;
+  background: var(--block);
+  box-shadow: 3px 3px 0 var(--pale);
+}
+#settings input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: none;
+  border-radius: 0;
+  background: var(--block);
+  box-shadow: 3px 3px 0 var(--pale);
+}

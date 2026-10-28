@@ -8,8 +8,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="theme-color" content="#ffffff">
   <title>Disintegration</title>
+  <!-- Silkscreen: a small pixel font for the settings menu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script type="module" crossorigin src="./assets/index-0JaBIRr4.js"></script>
+  <script type="module" crossorigin src="./assets/index-Bdh7-0KO.js"></script>
 </head>
 <body>
   <!-- The whole screen is one big button. -->
@@ -21,47 +25,48 @@
     <div id="progress"><div id="progress-fill"></div></div>
   </main>
 
-  <!-- Small gear in the corner opens the settings. -->
-  <button id="settings-button" aria-label="Settings">⚙︎</button>
+  <!-- A small square of pixels in the corner opens the settings. -->
+  <button id="settings-button" aria-label="Settings"></button>
 
   <div id="settings" hidden>
-    <h2>Settings</h2>
+    <h2>settings</h2>
 
-    <label>
-      Recording
+    <!-- Each dropdown is shown as a row of blocks to tap (see settings.js). -->
+    <div class="field">
+      <span class="name">recording</span>
       <select id="record-mode">
-        <option value="tap">Tap to start, tap to stop</option>
-        <option value="always">Always listening, tap loops what it heard</option>
+        <option value="tap">tap start/stop</option>
+        <option value="always">always listening</option>
       </select>
+    </div>
+
+    <label class="field">
+      <span class="name">max recording length</span>
+      <span class="row"><input id="max-record" type="range" min="2" max="60" step="1"> <output id="max-record-out"></output></span>
     </label>
 
-    <label>
-      Max recording length
-      <span><input id="max-record" type="range" min="2" max="60" step="1"> <output id="max-record-out"></output></span>
+    <label class="field">
+      <span class="name">decay length</span>
+      <span class="row"><input id="decay" type="range" min="30" max="1200" step="30"> <output id="decay-out"></output></span>
     </label>
 
-    <label>
-      Decay length
-      <span><input id="decay" type="range" min="30" max="1200" step="30"> <output id="decay-out"></output></span>
-    </label>
-
-    <label>
-      Each new phrase
+    <div class="field">
+      <span class="name">each new phrase</span>
       <select id="new-phrase">
-        <option value="fresh">Starts fresh</option>
-        <option value="continue">Continues the decay where the last one was</option>
+        <option value="fresh">starts fresh</option>
+        <option value="continue">continues decay</option>
       </select>
-    </label>
+    </div>
 
-    <label>
-      Ghosts of earlier phrases
+    <div class="field">
+      <span class="name">ghosts of earlier phrases</span>
       <select id="ghosts">
-        <option value="on">On</option>
-        <option value="off">Off</option>
+        <option value="on">on</option>
+        <option value="off">off</option>
       </select>
-    </label>
+    </div>
 
-    <button id="settings-close">Done</button>
+    <button id="settings-close">done</button>
   </div>
 
 </body>
