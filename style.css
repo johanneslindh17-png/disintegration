@@ -261,9 +261,9 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
   box-shadow: 2px 2px 0 var(--accent);
 }
 
-/* The little text about the app. */
+/* The little text about the app, under the title. */
 #settings .about {
-  margin: 0;
+  margin: -10px 0 0;
   font-size: 10px;
   line-height: 1.9;
   letter-spacing: 0.03em;

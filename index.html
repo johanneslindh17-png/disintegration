@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script type="module" crossorigin src="./assets/index-DFzazxOg.js"></script>
+  <script type="module" crossorigin src="./assets/index-C8WK-F58.js"></script>
 </head>
 <body>
   <!-- The whole screen is one big button. -->
@@ -33,9 +33,14 @@
     <div class="sheet">
       <h2>settings</h2>
 
+      <p class="about">
+        An alternative way to generate sound, for artistic practice or in whatever
+        way inspires you. Tap the screen, record some sounds, tap again, and hear
+        them slowly transform.
+      </p>
+
       <!-- Each dropdown is shown as a row of choices to tap (see settings.js). -->
       <section>
-        <h3>record</h3>
         <div class="field" style="--accent: #a9cfe8">
           <span class="name">recording</span>
           <select id="record-mode">
@@ -50,23 +55,22 @@
       </section>
 
       <section>
-        <h3>transform</h3>
         <label class="field" style="--accent: #bcaedd">
-          <span class="name">decay length</span>
+          <span class="name">transformation length</span>
           <span class="row"><input id="decay" type="range" min="60" max="1200" step="60"> <output id="decay-out"></output></span>
         </label>
         <div class="field" style="--accent: #a3d4cb">
           <span class="name">each new phrase</span>
           <select id="new-phrase">
             <option value="fresh">starts fresh</option>
-            <option value="continue">continues decay</option>
+            <option value="continue">continues transformation</option>
           </select>
         </div>
         <div class="field" style="--accent: #ecc6a2">
           <span class="name">ghosts of earlier phrases</span>
           <select id="ghosts">
-            <option value="on">on</option>
             <option value="off">off</option>
+            <option value="on">on</option>
           </select>
         </div>
         <div class="field" style="--accent: #c9dba8">
@@ -74,12 +78,6 @@
           <div class="choices" id="instruments" data-options="piano,kalimba,bowl" data-labels="piano,kalimba,singing bowl"></div>
         </div>
       </section>
-
-      <p class="about">
-        An alternative way to generate sound, for artistic practice or in whatever
-        way inspires you. Tap the screen, record some sounds, tap again, and hear
-        them transform over the decay length.
-      </p>
 
       <button id="settings-close">done</button>
     </div>
