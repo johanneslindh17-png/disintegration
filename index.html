@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- user-scalable=no stops accidental pinch/double-tap zoom while dancing -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="theme-color" content="#000000">
+  <title>Disintegration</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" crossorigin src="./assets/index-Bnl_JIoQ.js"></script>
+</head>
+<body>
+  <!-- The whole screen is one big button. -->
+  <main id="stage">
+    <canvas id="wave"></canvas>
+    <div id="label">tap to record</div>
+    <div id="sublabel"></div>
+    <div id="progress"><div id="progress-fill"></div></div>
+  </main>
+
+  <!-- Small gear in the corner opens the settings. -->
+  <button id="settings-button" aria-label="Settings">⚙︎</button>
+
+  <div id="settings" hidden>
+    <h2>Settings</h2>
+
+    <label>
+      Recording
+      <select id="record-mode">
+        <option value="tap">Tap to start, tap to stop</option>
+        <option value="always">Always listening, tap loops what it heard</option>
+      </select>
+    </label>
+
+    <label>
+      Max recording length
+      <span><input id="max-record" type="range" min="2" max="60" step="1"> <output id="max-record-out"></output></span>
+    </label>
+
+    <label>
+      Playback
+      <select id="mode">
+        <option value="loop">Loop until I tap</option>
+        <option value="timed">Timed (ends when fully decayed)</option>
+      </select>
+    </label>
+
+    <label>
+      Decay length
+      <span><input id="decay" type="range" min="30" max="1200" step="30"> <output id="decay-out"></output></span>
+    </label>
+
+    <label>
+      Each new phrase
+      <select id="new-phrase">
+        <option value="fresh">Starts fresh</option>
+        <option value="continue">Continues the decay where the last one was</option>
+      </select>
+    </label>
+
+    <label>
+      Ghosts of earlier phrases
+      <select id="ghosts">
+        <option value="on">On</option>
+        <option value="off">Off</option>
+      </select>
+    </label>
+
+    <button id="settings-close">Done</button>
+  </div>
+
+</body>
+</html>
