@@ -88,9 +88,9 @@ body.recording #label { color: var(--rec); }
 }
 body.recording #progress-fill { background: var(--rec); opacity: 1; }
 
-/* ── Settings: pixel style ──────────────────────────────────────────────── */
+/* ── Settings: fine pixels, quiet type, lots of air ───────────────────────── */
 
-/* The settings button: a small hollow square made of 8 pixels. */
+/* The settings button: a small hollow square of 8 tiny pastel pixels. */
 #settings-button {
   position: fixed;
   top: calc(env(safe-area-inset-top) + 8px);
@@ -103,133 +103,171 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
 #settings-button::before {
   content: '';
   position: absolute;
-  left: 15px;
-  top: 15px;
-  width: 4px;
-  height: 4px;
+  left: 18px;
+  top: 18px;
+  width: 2px;
+  height: 2px;
   background: #a9cfe8;
   box-shadow:
-    5px 0 #e6b3c3, 10px 0 #bcaedd,
-    0 5px #ecc6a2, 10px 5px #a3d4cb,
-    0 10px #bcaedd, 5px 10px #a9cfe8, 10px 10px #e6b3c3;
+    3px 0 #e6b3c3, 6px 0 #bcaedd,
+    0 3px #ecc6a2, 6px 3px #a3d4cb,
+    0 6px #bcaedd, 3px 6px #a9cfe8, 6px 6px #e6b3c3;
 }
 
 #settings {
-  --block: #2a2a2e;   /* the dark pixel color */
-  --pale: #dcdce2;    /* the light pixel color (empty, shadows) */
+  --ink: #3a3a40;   /* text */
+  --pale: #e4e4ea;  /* empty dots, thin lines */
   position: fixed;
   inset: 0;
   background: #fff;
-  padding: calc(env(safe-area-inset-top) + 28px) 22px calc(env(safe-area-inset-bottom) + 24px);
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
   overflow-y: auto;
-  font-family: 'Silkscreen', ui-monospace, Menlo, monospace;
-  color: var(--block);
+  display: flex;
+  padding: calc(env(safe-area-inset-top) + 32px) 28px calc(env(safe-area-inset-bottom) + 32px);
+  color: var(--ink);
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-weight: 300;
 }
 #settings[hidden] { display: none; }
 
-#settings h2 {
-  margin: 0;
-  font-size: 26px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
+/* Everything sits in one calm column in the middle of the screen. */
+#settings .sheet {
+  margin: auto; /* centered, but still scrolls if the screen is small */
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
 }
-/* A dotted pixel line under the title. */
+
+#settings h2,
+#settings h3 {
+  margin: 0;
+  font-family: 'Silkscreen', ui-monospace, monospace;
+  font-weight: 400;
+}
+#settings h2 {
+  font-size: 12px;
+  letter-spacing: 0.35em;
+  text-align: center;
+}
+/* A small row of pastel pixels under the title. */
 #settings h2::after {
   content: '';
   display: block;
-  height: 4px;
-  margin-top: 12px;
+  width: 26px;
+  height: 2px;
+  margin: 14px auto 0;
   background: repeating-linear-gradient(90deg,
-    #a9cfe8 0 6px, transparent 6px 10px,
-    #e6b3c3 10px 16px, transparent 16px 20px,
-    #bcaedd 20px 26px, transparent 26px 30px,
-    #a3d4cb 30px 36px, transparent 36px 40px,
-    #ecc6a2 40px 46px, transparent 46px 50px);
+    #a9cfe8 0 2px, transparent 2px 4px, #e6b3c3 4px 6px, transparent 6px 8px,
+    #bcaedd 8px 10px, transparent 10px 12px, #a3d4cb 12px 14px, transparent 14px 16px,
+    #ecc6a2 16px 18px, transparent 18px 20px, #a9cfe8 20px 22px, transparent 22px 24px,
+    #e6b3c3 24px 26px);
+}
+
+#settings section { display: flex; flex-direction: column; gap: 22px; }
+/* Group headings with a fine dotted line running out to the right. */
+#settings h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: var(--dim);
+}
+#settings h3::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--pale) 0 2px, transparent 2px 4px);
 }
 
 #settings .field { display: flex; flex-direction: column; gap: 10px; }
-#settings .name { font-size: 11px; letter-spacing: 0.08em; color: var(--dim); }
+#settings .name { font-size: 11px; letter-spacing: 0.04em; color: var(--dim); }
 #settings .row { display: flex; align-items: center; gap: 14px; }
-#settings output { min-width: 5.5em; text-align: right; font-size: 12px; }
+#settings output { min-width: 4.5em; text-align: right; font-size: 11px; }
 
-/* Dropdowns are hidden; settings.js shows their options as blocks instead. */
+/* Dropdowns are hidden; settings.js shows their options as choices instead. */
 #settings select { display: none; }
 .choices { display: flex; flex-wrap: wrap; gap: 8px; }
-.choices button,
-#settings-close {
-  font-family: inherit;
+.choices button {
+  font: inherit;
   font-size: 11px;
-  letter-spacing: 0.05em;
-  padding: 11px 12px;
-  border: 2px solid var(--block);
+  letter-spacing: 0.03em;
+  padding: 7px 11px;
+  border: 1px solid var(--pale);
   border-radius: 0;
   background: #fff;
-  color: var(--block);
+  color: var(--dim);
   cursor: pointer;
 }
-/* The chosen block: filled with the setting's pastel color. */
+/* The chosen one: softly filled with the setting's pastel. */
 .choices button.on {
-  background: var(--accent, var(--block));
-  color: var(--block);
-  box-shadow: 4px 4px 0 var(--block); /* a hard pixel shadow */
-}
-#settings-close {
-  background: var(--block);
-  color: #fff;
-  box-shadow: 4px 4px 0 #bcaedd;
-}
-#settings-close { font-size: 13px; padding: 14px; }
-
-/* The little text about the app, just above "done". */
-#settings .about {
-  margin: auto 0 0;
-  font-size: 10px;
-  line-height: 1.8;
-  letter-spacing: 0.04em;
-  color: var(--dim);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
 }
 
-/* Sliders: a row of small squares that fills in dark up to the value
-   (settings.js sets --fill), with a square handle. */
+/* Sliders: a thin line of 2-pixel dots, pastel up to the value
+   (settings.js sets --fill), with a small square handle. */
 #settings input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   flex: 1;
-  height: 22px;
+  height: 16px;
   margin: 0;
   background: transparent;
   --fill: 50%;
 }
 #settings input[type="range"]::-webkit-slider-runnable-track {
-  height: 8px;
+  height: 2px;
   background:
-    repeating-linear-gradient(90deg, transparent 0 6px, #fff 6px 9px),
-    linear-gradient(90deg, var(--accent, var(--block)) var(--fill), var(--pale) var(--fill));
+    repeating-linear-gradient(90deg, transparent 0 2px, #fff 2px 4px),
+    linear-gradient(90deg, var(--accent) var(--fill), var(--pale) var(--fill));
 }
 #settings input[type="range"]::-moz-range-track {
-  height: 8px;
+  height: 2px;
   background:
-    repeating-linear-gradient(90deg, transparent 0 6px, #fff 6px 9px),
-    linear-gradient(90deg, var(--accent, var(--block)) var(--fill), var(--pale) var(--fill));
+    repeating-linear-gradient(90deg, transparent 0 2px, #fff 2px 4px),
+    linear-gradient(90deg, var(--accent) var(--fill), var(--pale) var(--fill));
 }
 #settings input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  margin-top: -5px;
+  width: 8px;
+  height: 8px;
+  margin-top: -3px;
   border: none;
   border-radius: 0;
-  background: var(--block);
-  box-shadow: 3px 3px 0 var(--accent, var(--pale));
+  background: var(--ink);
+  box-shadow: 2px 2px 0 var(--accent);
 }
 #settings input[type="range"]::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
+  width: 8px;
+  height: 8px;
   border: none;
   border-radius: 0;
-  background: var(--block);
-  box-shadow: 3px 3px 0 var(--accent, var(--pale));
+  background: var(--ink);
+  box-shadow: 2px 2px 0 var(--accent);
+}
+
+/* The little text about the app. */
+#settings .about {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+  color: var(--dim);
+  text-align: center;
+}
+
+#settings-close {
+  align-self: center;
+  font-family: 'Silkscreen', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  padding: 10px 26px 10px 30px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
 }

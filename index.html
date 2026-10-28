@@ -29,50 +29,55 @@
   <button id="settings-button" aria-label="Settings"></button>
 
   <div id="settings" hidden>
-    <h2>settings</h2>
+    <div class="sheet">
+      <h2>settings</h2>
 
-    <!-- Each dropdown is shown as a row of blocks to tap (see settings.js). -->
-    <div class="field" style="--accent: #a9cfe8">
-      <span class="name">recording</span>
-      <select id="record-mode">
-        <option value="tap">tap start/stop</option>
-        <option value="always">always listening</option>
-      </select>
+      <!-- Each dropdown is shown as a row of choices to tap (see settings.js). -->
+      <section>
+        <h3>record</h3>
+        <div class="field" style="--accent: #a9cfe8">
+          <span class="name">recording</span>
+          <select id="record-mode">
+            <option value="tap">tap start/stop</option>
+            <option value="always">always listening</option>
+          </select>
+        </div>
+        <label class="field" style="--accent: #e6b3c3">
+          <span class="name">automatically stop recording at</span>
+          <span class="row"><input id="max-record" type="range" min="2" max="60" step="1"> <output id="max-record-out"></output></span>
+        </label>
+      </section>
+
+      <section>
+        <h3>transform</h3>
+        <label class="field" style="--accent: #bcaedd">
+          <span class="name">decay length</span>
+          <span class="row"><input id="decay" type="range" min="60" max="1200" step="60"> <output id="decay-out"></output></span>
+        </label>
+        <div class="field" style="--accent: #a3d4cb">
+          <span class="name">each new phrase</span>
+          <select id="new-phrase">
+            <option value="fresh">starts fresh</option>
+            <option value="continue">continues decay</option>
+          </select>
+        </div>
+        <div class="field" style="--accent: #ecc6a2">
+          <span class="name">ghosts of earlier phrases</span>
+          <select id="ghosts">
+            <option value="on">on</option>
+            <option value="off">off</option>
+          </select>
+        </div>
+      </section>
+
+      <p class="about">
+        an alternative way to generate sound, for artistic practice or any use you
+        find for it. tap the screen, record some sounds, tap again, and hear them
+        transform over the decay length.
+      </p>
+
+      <button id="settings-close">done</button>
     </div>
-
-    <label class="field" style="--accent: #e6b3c3">
-      <span class="name">automatically stop recording at</span>
-      <span class="row"><input id="max-record" type="range" min="2" max="60" step="1"> <output id="max-record-out"></output></span>
-    </label>
-
-    <label class="field" style="--accent: #bcaedd">
-      <span class="name">decay length</span>
-      <span class="row"><input id="decay" type="range" min="60" max="1200" step="60"> <output id="decay-out"></output></span>
-    </label>
-
-    <div class="field" style="--accent: #a3d4cb">
-      <span class="name">each new phrase</span>
-      <select id="new-phrase">
-        <option value="fresh">starts fresh</option>
-        <option value="continue">continues decay</option>
-      </select>
-    </div>
-
-    <div class="field" style="--accent: #ecc6a2">
-      <span class="name">ghosts of earlier phrases</span>
-      <select id="ghosts">
-        <option value="on">on</option>
-        <option value="off">off</option>
-      </select>
-    </div>
-
-    <p class="about">
-      an alternative way to generate sound, for artistic practice or any use you
-      find for it. tap the screen, record some sounds, tap again, and hear them
-      transform over the decay length.
-    </p>
-
-    <button id="settings-close">done</button>
   </div>
 
 </body>
