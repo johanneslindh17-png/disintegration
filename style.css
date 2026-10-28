@@ -107,11 +107,11 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
   top: 15px;
   width: 4px;
   height: 4px;
-  background: var(--dim);
+  background: #a9cfe8;
   box-shadow:
-    5px 0 var(--dim), 10px 0 var(--dim),
-    0 5px var(--dim), 10px 5px var(--dim),
-    0 10px var(--dim), 5px 10px var(--dim), 10px 10px var(--dim);
+    5px 0 #e6b3c3, 10px 0 #bcaedd,
+    0 5px #ecc6a2, 10px 5px #a3d4cb,
+    0 10px #bcaedd, 5px 10px #a9cfe8, 10px 10px #e6b3c3;
 }
 
 #settings {
@@ -142,8 +142,12 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
   display: block;
   height: 4px;
   margin-top: 12px;
-  background: repeating-linear-gradient(90deg, var(--block) 0 4px, transparent 4px 10px);
-  opacity: 0.35;
+  background: repeating-linear-gradient(90deg,
+    #a9cfe8 0 6px, transparent 6px 10px,
+    #e6b3c3 10px 16px, transparent 16px 20px,
+    #bcaedd 20px 26px, transparent 26px 30px,
+    #a3d4cb 30px 36px, transparent 36px 40px,
+    #ecc6a2 40px 46px, transparent 46px 50px);
 }
 
 #settings .field { display: flex; flex-direction: column; gap: 10px; }
@@ -166,13 +170,27 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
   color: var(--block);
   cursor: pointer;
 }
-.choices button.on,
+/* The chosen block: filled with the setting's pastel color. */
+.choices button.on {
+  background: var(--accent, var(--block));
+  color: var(--block);
+  box-shadow: 4px 4px 0 var(--block); /* a hard pixel shadow */
+}
 #settings-close {
   background: var(--block);
   color: #fff;
-  box-shadow: 4px 4px 0 var(--pale); /* a hard pixel shadow */
+  box-shadow: 4px 4px 0 #bcaedd;
 }
-#settings-close { margin-top: auto; font-size: 13px; padding: 14px; }
+#settings-close { font-size: 13px; padding: 14px; }
+
+/* The little text about the app, just above "done". */
+#settings .about {
+  margin: auto 0 0;
+  font-size: 10px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: var(--dim);
+}
 
 /* Sliders: a row of small squares that fills in dark up to the value
    (settings.js sets --fill), with a square handle. */
@@ -189,13 +207,13 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
   height: 8px;
   background:
     repeating-linear-gradient(90deg, transparent 0 6px, #fff 6px 9px),
-    linear-gradient(90deg, var(--block) var(--fill), var(--pale) var(--fill));
+    linear-gradient(90deg, var(--accent, var(--block)) var(--fill), var(--pale) var(--fill));
 }
 #settings input[type="range"]::-moz-range-track {
   height: 8px;
   background:
     repeating-linear-gradient(90deg, transparent 0 6px, #fff 6px 9px),
-    linear-gradient(90deg, var(--block) var(--fill), var(--pale) var(--fill));
+    linear-gradient(90deg, var(--accent, var(--block)) var(--fill), var(--pale) var(--fill));
 }
 #settings input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -205,7 +223,7 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
   border: none;
   border-radius: 0;
   background: var(--block);
-  box-shadow: 3px 3px 0 var(--pale);
+  box-shadow: 3px 3px 0 var(--accent, var(--pale));
 }
 #settings input[type="range"]::-moz-range-thumb {
   width: 18px;
@@ -213,5 +231,5 @@ body.recording #progress-fill { background: var(--rec); opacity: 1; }
   border: none;
   border-radius: 0;
   background: var(--block);
-  box-shadow: 3px 3px 0 var(--pale);
+  box-shadow: 3px 3px 0 var(--accent, var(--pale));
 }

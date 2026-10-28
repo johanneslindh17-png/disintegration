@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script type="module" crossorigin src="./assets/index-Bdh7-0KO.js"></script>
+  <script type="module" crossorigin src="./assets/index-y41c9C4j.js"></script>
 </head>
 <body>
   <!-- The whole screen is one big button. -->
@@ -32,7 +32,7 @@
     <h2>settings</h2>
 
     <!-- Each dropdown is shown as a row of blocks to tap (see settings.js). -->
-    <div class="field">
+    <div class="field" style="--accent: #a9cfe8">
       <span class="name">recording</span>
       <select id="record-mode">
         <option value="tap">tap start/stop</option>
@@ -40,17 +40,17 @@
       </select>
     </div>
 
-    <label class="field">
-      <span class="name">max recording length</span>
+    <label class="field" style="--accent: #e6b3c3">
+      <span class="name">automatically stop recording at</span>
       <span class="row"><input id="max-record" type="range" min="2" max="60" step="1"> <output id="max-record-out"></output></span>
     </label>
 
-    <label class="field">
+    <label class="field" style="--accent: #bcaedd">
       <span class="name">decay length</span>
-      <span class="row"><input id="decay" type="range" min="30" max="1200" step="30"> <output id="decay-out"></output></span>
+      <span class="row"><input id="decay" type="range" min="60" max="1200" step="60"> <output id="decay-out"></output></span>
     </label>
 
-    <div class="field">
+    <div class="field" style="--accent: #a3d4cb">
       <span class="name">each new phrase</span>
       <select id="new-phrase">
         <option value="fresh">starts fresh</option>
@@ -58,13 +58,19 @@
       </select>
     </div>
 
-    <div class="field">
+    <div class="field" style="--accent: #ecc6a2">
       <span class="name">ghosts of earlier phrases</span>
       <select id="ghosts">
         <option value="on">on</option>
         <option value="off">off</option>
       </select>
     </div>
+
+    <p class="about">
+      an alternative way to generate sound, for artistic practice or any use you
+      find for it. tap the screen, record some sounds, tap again, and hear them
+      transform over the decay length.
+    </p>
 
     <button id="settings-close">done</button>
   </div>
