@@ -48,6 +48,18 @@ html, body {
   pointer-events: none;
 }
 
+/* What's happening right now (scene, panning, events): a small line at the top. */
+#status {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + 22px);
+  left: 56px;
+  right: 56px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+}
+
 /* The text sits low on the screen, so the waveform has the middle. */
 #label {
   position: absolute;
