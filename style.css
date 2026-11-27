@@ -60,43 +60,16 @@ html, body {
   color: var(--dim);
 }
 
-/* Small pixel camera monitor, centered 20% down from the top when camera mode is active. */
+/* Small camera readout at the top when live reactive camera capture is active. */
 #cam-hud {
   position: absolute;
-  top: 20%;
+  top: calc(env(safe-area-inset-top) + 42px);
   left: 50%;
   transform: translateX(-50%);
   pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 #cam-hud[hidden] { display: none; }
-#cam-preview {
-  width: 96px;
-  height: 72px;
-  image-rendering: pixelated;
-  border: 2px solid rgba(42, 42, 46, 0.22);
-  background: #f6f6f8;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-#cam-hud[data-zone="still"] #cam-preview {
-  border-color: rgba(42, 42, 46, 0.35);
-}
-#cam-hud[data-zone="move"] #cam-preview {
-  border-color: #6b9ac4;
-  box-shadow: 0 0 0 2px rgba(107, 154, 196, 0.2);
-}
-#cam-hud[data-zone="floor"] #cam-preview {
-  border-color: #4f5d75;
-  box-shadow: 0 0 0 2px rgba(79, 93, 117, 0.22);
-}
-#cam-hud[data-zone="high"] #cam-preview {
-  border-color: #d9826c;
-  box-shadow: 0 0 0 2px rgba(217, 130, 108, 0.24);
-}
 #cam-readout {
-  margin-top: 5px;
   text-align: center;
   font-family: 'Silkscreen', monospace;
   font-size: 9px;
